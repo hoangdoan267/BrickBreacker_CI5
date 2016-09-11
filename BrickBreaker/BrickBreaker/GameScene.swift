@@ -1,6 +1,6 @@
 //
 //  GameScene.swift
-//  BrickBreaker
+//  breakerBreaker
 //
 //  Created by SonVu on 9/11/16.
 //  Copyright (c) 2016 SonVu. All rights reserved.
@@ -11,12 +11,14 @@ import SpriteKit
 class GameScene: SKScene {
     //Nodes
     //let ball : SKSpriteNode!
-    var brick : SKSpriteNode!
+    var breaker : SKSpriteNode!
+    var ball : SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         addBackGround()
-        addBrick()
+        addBreaker()
+        addBall()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -33,34 +35,45 @@ class GameScene: SKScene {
             let dx = currentPosition.x - previousPosition.x
             let movementVector = CGPoint(x: dx, y: 0)
             //3
-            let newPos = movementVector.add(brick.position)
+            let newPos = movementVector.add(breaker.position)
             //4
-            brick.position = newPos
+            breaker.position = newPos
             //validate
-            if brick.position.x > self.frame.maxX {
-                brick.position.x = self.frame.size.width - brick.frame.width / 2
+            if breaker.position.x > self.frame.maxX {
+                breaker.position.x = self.frame.size.width - breaker.frame.width / 2
             }
-            if brick.position.x < 0 {
-                brick.position.x = brick.frame.width / 2
+            if breaker.position.x < 0 {
+                breaker.position.x = breaker.frame.width / 2
             }
         }
     }
     
+    
+    //UPDATE
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        //1
+        let breakerFrame = breaker.frame
+        let ballFrame = ball.frame
+        //2
+        if CGRectIntersectsRect(breakerFrame, ballFrame) {
+            let fly = SKAction.moveToY(30, duration: 0.1)
+            breaker.runAction(fly)
+            
+        }
     }
     
-    //ADD BRICK
-    func addBrick()  {
+    //ADD breaker
+    func addBreaker()  {
         //1
-        brick = SKSpriteNode(imageNamed: "brick.jpg")
+        breaker = SKSpriteNode(imageNamed: "breaker.png")
         //2 size
-        brick.size.height = 30
-        brick.size.width = 80
+        breaker.size.height = 30
+        breaker.size.width = 80
         //3 position
-        brick.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 40)
+        breaker.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 40)
         //4
-        addChild(brick)
+        addChild(breaker)
     }
     
     //ADD BACKGROUND
@@ -71,5 +84,22 @@ class GameScene: SKScene {
         backGround.anchorPoint = CGPointZero
         //3
         addChild(backGround)
+    }
+    
+    //ADD BALL
+    func addBall()  {
+        //1
+        ball = SKSpriteNode.init(imageNamed: "ball_1.png")
+        //2 size
+        ball.size.width = 20
+        ball.size.height = 20
+        //3 position
+        ball.position.x = breaker.position.x
+        ball.position.y = breaker.position.y + breaker.frame.height / 2
+        //4 action
+        let flyDown = SKAction.moveByX(0, y: -10, duration: 0.1)
+        ball.runAction(flyDown)
+        //5
+        addChild(ball)
     }
 }
