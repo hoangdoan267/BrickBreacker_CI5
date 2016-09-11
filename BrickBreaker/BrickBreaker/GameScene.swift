@@ -9,37 +9,56 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    //Nodes
+    //let ball : SKSpriteNode!
+    var brick : SKSpriteNode!
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-        
-        self.addChild(myLabel)
+        addBrick()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
+        /* Called when a touch begins */
         
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            //1
+            let currentPosition = touch.locationInNode(self)
+            let previousPosition = touch.previousLocationInNode(self)
+            //2
+            let dx = currentPosition.x - previousPosition.x
+            let movementVector = CGPoint(x: dx, y: 0)
+            //3
+            let newPos = movementVector.add(brick.position)
+            //4
+            brick.position = newPos
+            //validate
+            if brick.position.x > self.frame.maxX {
+                brick.position.x = self.frame.size.width - brick.frame.width / 2
+            }
+            if brick.position.x < 0 {
+                brick.position.x = brick.frame.width / 2
+            }
         }
     }
-   
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    //ADD BRICK
+    func addBrick()  {
+        //1
+        brick = SKSpriteNode(imageNamed: "brick.jpg")
+        //2 size
+        brick.size.height = 30
+        brick.size.width = 80
+        //3 position
+        brick.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 100)
+        //4
+        addChild(brick)
     }
 }

@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		2C7D12AD1D8507BF003FE86C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D12AC1D8507BF003FE86C /* AppDelegate.swift */; };
-		2C7D12AF1D8507BF003FE86C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12AE1D8507BF003FE86C /* GameScene.sks */; };
 		2C7D12B11D8507BF003FE86C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D12B01D8507BF003FE86C /* GameScene.swift */; };
 		2C7D12B31D8507BF003FE86C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D12B21D8507BF003FE86C /* GameViewController.swift */; };
 		2C7D12B61D8507BF003FE86C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12B41D8507BF003FE86C /* Main.storyboard */; };
 		2C7D12B81D8507BF003FE86C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12B71D8507BF003FE86C /* Assets.xcassets */; };
 		2C7D12BB1D8507BF003FE86C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12B91D8507BF003FE86C /* LaunchScreen.storyboard */; };
+		2C7D12C31D850B90003FE86C /* brick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12C21D850B90003FE86C /* brick.jpg */; };
+		2C7D12C61D850E79003FE86C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D12C51D850E79003FE86C /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C7D12A91D8507BF003FE86C /* BrickBreaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrickBreaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7D12AC1D8507BF003FE86C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C7D12AE1D8507BF003FE86C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2C7D12B01D8507BF003FE86C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2C7D12B21D8507BF003FE86C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2C7D12B51D8507BF003FE86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C7D12B71D8507BF003FE86C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C7D12BA1D8507BF003FE86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C7D12BC1D8507BF003FE86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C7D12C21D850B90003FE86C /* brick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brick.jpg; sourceTree = "<group>"; };
+		2C7D12C51D850E79003FE86C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +60,9 @@
 		2C7D12AB1D8507BF003FE86C /* BrickBreaker */ = {
 			isa = PBXGroup;
 			children = (
+				2C7D12C41D850E63003FE86C /* Utilities */,
+				2C7D12C21D850B90003FE86C /* brick.jpg */,
 				2C7D12AC1D8507BF003FE86C /* AppDelegate.swift */,
-				2C7D12AE1D8507BF003FE86C /* GameScene.sks */,
 				2C7D12B01D8507BF003FE86C /* GameScene.swift */,
 				2C7D12B21D8507BF003FE86C /* GameViewController.swift */,
 				2C7D12B41D8507BF003FE86C /* Main.storyboard */,
@@ -68,6 +71,14 @@
 				2C7D12BC1D8507BF003FE86C /* Info.plist */,
 			);
 			path = BrickBreaker;
+			sourceTree = "<group>";
+		};
+		2C7D12C41D850E63003FE86C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2C7D12C51D850E79003FE86C /* Utilities.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C7D12AF1D8507BF003FE86C /* GameScene.sks in Resources */,
+				2C7D12C31D850B90003FE86C /* brick.jpg in Resources */,
 				2C7D12BB1D8507BF003FE86C /* LaunchScreen.storyboard in Resources */,
 				2C7D12B81D8507BF003FE86C /* Assets.xcassets in Resources */,
 				2C7D12B61D8507BF003FE86C /* Main.storyboard in Resources */,
@@ -144,6 +155,7 @@
 			files = (
 				2C7D12B11D8507BF003FE86C /* GameScene.swift in Sources */,
 				2C7D12B31D8507BF003FE86C /* GameViewController.swift in Sources */,
+				2C7D12C61D850E79003FE86C /* Utilities.swift in Sources */,
 				2C7D12AD1D8507BF003FE86C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +272,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BrickBreaker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.techkids.BrickBreaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -271,6 +284,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BrickBreaker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.techkids.BrickBreaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
