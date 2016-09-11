@@ -100,8 +100,7 @@ class GameScene: SKScene {
         ball.position.x = breaker.position.x
         ball.position.y = breaker.position.y + breaker.frame.height
         //4 action
-        let flyDown = SKAction.moveByX(0, y: -20, duration: 0.1)
-        ball.runAction(SKAction.repeatActionForever(flyDown))
+
         //5
         addChild(ball)
     }
