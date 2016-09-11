@@ -71,8 +71,8 @@ class GameScene: SKScene {
         //1
         breaker = SKSpriteNode(imageNamed: "breaker.png")
         //2 size
-        breaker.size.height = 30
-        breaker.size.width = 80
+        breaker.size.height = 10
+        breaker.size.width = 100
         //3 position
         breaker.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 40)
         //4
@@ -94,11 +94,11 @@ class GameScene: SKScene {
         //1
         ball = SKSpriteNode.init(imageNamed: "ball_1.png")
         //2 size
-        ball.size.width = 20
-        ball.size.height = 20
+        ball.size.width = 10
+        ball.size.height = 10
         //3 position
         ball.position.x = breaker.position.x
-        ball.position.y = breaker.position.y + breaker.frame.height / 2
+        ball.position.y = breaker.position.y + breaker.frame.height
         //4 action
         let flyDown = SKAction.moveByX(0, y: -20, duration: 0.1)
         ball.runAction(SKAction.repeatActionForever(flyDown))
