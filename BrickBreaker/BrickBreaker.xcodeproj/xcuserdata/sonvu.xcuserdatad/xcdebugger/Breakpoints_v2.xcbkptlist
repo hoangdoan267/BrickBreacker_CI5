@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrickBreaker/GameScene.swift"
-            timestampString = "495260090.142834"
+            timestampString = "495261508.251913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "addBrick()"
             landmarkType = "5">
          </BreakpointContent>

@@ -15,6 +15,7 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        addBackGround()
         addBrick()
     }
     
@@ -57,8 +58,18 @@ class GameScene: SKScene {
         brick.size.height = 30
         brick.size.width = 80
         //3 position
-        brick.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 100)
+        brick.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 40)
         //4
         addChild(brick)
+    }
+    
+    //ADD BACKGROUND
+    func addBackGround() {
+        //1
+        let backGround = SKSpriteNode(imageNamed: "launch_background.png")
+        //2
+        backGround.anchorPoint = CGPointZero
+        //3
+        addChild(backGround)
     }
 }
