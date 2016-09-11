@@ -14,6 +14,8 @@
 		2C7D12B61D8507BF003FE86C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12B41D8507BF003FE86C /* Main.storyboard */; };
 		2C7D12B81D8507BF003FE86C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12B71D8507BF003FE86C /* Assets.xcassets */; };
 		2C7D12BB1D8507BF003FE86C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D12B91D8507BF003FE86C /* LaunchScreen.storyboard */; };
+		A8C2FE7B1D850EB0007845D7 /* launch_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C2FE7A1D850EB0007845D7 /* launch_background.png */; };
+		A8C2FE7D1D85115D007845D7 /* logo_game.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C2FE7C1D85115D007845D7 /* logo_game.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		2C7D12B71D8507BF003FE86C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C7D12BA1D8507BF003FE86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C7D12BC1D8507BF003FE86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8C2FE7A1D850EB0007845D7 /* launch_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_background.png; sourceTree = "<group>"; };
+		A8C2FE7C1D85115D007845D7 /* logo_game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_game.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 		2C7D12AB1D8507BF003FE86C /* BrickBreaker */ = {
 			isa = PBXGroup;
 			children = (
+				A8C2FE7A1D850EB0007845D7 /* launch_background.png */,
+				A8C2FE7C1D85115D007845D7 /* logo_game.png */,
 				2C7D12AC1D8507BF003FE86C /* AppDelegate.swift */,
 				2C7D12AE1D8507BF003FE86C /* GameScene.sks */,
 				2C7D12B01D8507BF003FE86C /* GameScene.swift */,
@@ -128,10 +134,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8C2FE7D1D85115D007845D7 /* logo_game.png in Resources */,
 				2C7D12AF1D8507BF003FE86C /* GameScene.sks in Resources */,
 				2C7D12BB1D8507BF003FE86C /* LaunchScreen.storyboard in Resources */,
 				2C7D12B81D8507BF003FE86C /* Assets.xcassets in Resources */,
 				2C7D12B61D8507BF003FE86C /* Main.storyboard in Resources */,
+				A8C2FE7B1D850EB0007845D7 /* launch_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +304,7 @@
 				2C7D12C11D8507BF003FE86C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
