@@ -53,17 +53,18 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         //1
-        let breakerFrame = breaker.frame
-        let ballFrame = ball.frame
+        //let breakerFrame = breaker.frame
+        //let ballFrame = ball.frame
         //2
-        if CGRectIntersectsRect(breakerFrame, ballFrame) {
-            let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
-            ball.runAction(SKAction.repeatActionForever(flyUp))
-        }
-        if ball.position.y >= (self.frame.height - ball.frame.size.height - 20) {
-            let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
-            ball.runAction(SKAction.repeatActionForever(flyDownz))
-        }
+//        if ball.position.y <= breaker.position.y + breaker.frame.size.height + 20 {
+//            let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
+//            ball.runAction(SKAction.repeatActionForever(flyUp))
+//
+//        }
+//        if ball.position.y >= (self.frame.height - ball.frame.size.height - 20) {
+//            let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
+//            ball.runAction(SKAction.repeatActionForever(flyDownz))
+//        }
     }
     
     //ADD breaker
@@ -99,10 +100,25 @@ class GameScene: SKScene {
         //3 position
         ball.position.x = breaker.position.x
         ball.position.y = breaker.position.y + breaker.frame.height
+        
         //4 action
-        let flyDown = SKAction.moveByX(0, y: -20, duration: 0.1)
-        ball.runAction(SKAction.repeatActionForever(flyDown))
-        //5
+        //let flyDown = SKAction.moveByX(0, y: -20, duration: 0.1)
+        //ball.runAction(SKAction.repeatActionForever(flyDown))
+        
+        let validate = SKAction.runBlock {
+            if self.ball.position.y <= self.breaker.position.y + self.breaker.frame.size.height + 20 {
+                let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
+                self.ball.runAction(SKAction.repeatActionForever(flyUp))
+                
+            }
+            if self.ball.position.y >= (self.frame.height - self.ball.frame.size.height - 20) {
+                let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
+                self.ball.runAction(SKAction.repeatActionForever(flyDownz))
+            }
+        }
         addChild(ball)
+
+        ball.runAction(validate)
+        //5
     }
 }
