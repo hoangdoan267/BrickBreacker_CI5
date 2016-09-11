@@ -13,11 +13,13 @@ class GameScene: SKScene {
     //let ball : SKSpriteNode!
     var breaker : SKSpriteNode!
     var ball : SKSpriteNode!
+    var bricks: [SKSpriteNode] = []
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         addBackGround()
         addBreaker()
+        addBricks()
         addBall()
     }
     
@@ -51,20 +53,16 @@ class GameScene: SKScene {
     
     //UPDATE
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-        //1
-        //let breakerFrame = breaker.frame
-        //let ballFrame = ball.frame
-        //2
-//        if ball.position.y <= breaker.position.y + breaker.frame.size.height + 20 {
-//            let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
-//            ball.runAction(SKAction.repeatActionForever(flyUp))
-//
-//        }
-//        if ball.position.y >= (self.frame.height - ball.frame.size.height - 20) {
-//            let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
-//            ball.runAction(SKAction.repeatActionForever(flyDownz))
-//        }
+        for (brickIndex, brick) in bricks.enumerate() {
+            let brickFrame = brick.frame
+            let ballFrame = ball.frame
+            
+            if CGRectIntersectsRect(brickFrame, ballFrame) {
+                brick.removeFromParent()
+                bricks.removeAtIndex(brickIndex)
+            }
+        }
+
     }
     
     //ADD breaker
@@ -105,20 +103,53 @@ class GameScene: SKScene {
         //let flyDown = SKAction.moveByX(0, y: -20, duration: 0.1)
         //ball.runAction(SKAction.repeatActionForever(flyDown))
         
+        
         let validate = SKAction.runBlock {
+            let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
+            let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
+            
             if self.ball.position.y <= self.breaker.position.y + self.breaker.frame.size.height + 20 {
-                let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
+                print("hihi")
                 self.ball.runAction(SKAction.repeatActionForever(flyUp))
-                
             }
+            
             if self.ball.position.y >= (self.frame.height - self.ball.frame.size.height - 20) {
-                let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
-                self.ball.runAction(SKAction.repeatActionForever(flyDownz))
+                self.ball.runAction(flyDownz)
             }
+            
+            print("run")
         }
         addChild(ball)
 
-        ball.runAction(validate)
+        self.ball.runAction(validate)
         //5
+    }
+    
+    func addBricks() {
+
+        print(self.frame.width)
+        var count  = 64
+        var checkX:CGFloat = 40
+        var checkY:CGFloat = self.frame.maxY - 40
+        
+        while  count > 0 {
+            let brick = SKSpriteNode(imageNamed: "brick_1.png")
+            brick.size.height = 10
+            brick.size.width = 30
+            
+            if checkX + brick.size.width + 1 > self.frame.width - 30 {
+                checkX = 40
+                checkY -= 11
+            }
+            
+            brick.anchorPoint = CGPointZero
+            brick.position = CGPoint(x: checkX, y: checkY)
+            checkX += brick.size.width+1
+            print(brick.position.x)
+            bricks.append(brick)
+            addChild(brick)
+
+            count -= 1
+        }
     }
 }
