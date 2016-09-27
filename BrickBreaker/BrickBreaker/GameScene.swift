@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var breaker : SKSpriteNode!
     var ball : SKSpriteNode!
     var bricks: [SKSpriteNode] = []
+    let goc_quay: CGFloat = 90 * CGFloat(M_PI)/180
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -21,6 +22,7 @@ class GameScene: SKScene {
         addBreaker()
         addBricks()
         addBall()
+        self.physicsWorld.gravity = CGVectorMake(0,0);
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -50,19 +52,52 @@ class GameScene: SKScene {
         }
     }
     
+    var lastUpdateTimeInterval: CFTimeInterval = 0
     
-    //UPDATE
     override func update(currentTime: CFTimeInterval) {
-        for (brickIndex, brick) in bricks.enumerate() {
+        let r:CGFloat = 45 * CGFloat(M_PI)/180
+        print(r)
+        let dX: CGFloat = r * cos(self.ball.zRotation)
+        let dY: CGFloat = r * sin(self.ball.zRotation)
+        let dV: CGFloat = r * sin(self.ball.zRotation * 2)
+        for index in (bricks.count-1).stride(through: 0, by: -1) {
+            let brick = bricks[index]
             let brickFrame = brick.frame
             let ballFrame = ball.frame
+
             
             if CGRectIntersectsRect(brickFrame, ballFrame) {
+                
                 brick.removeFromParent()
-                bricks.removeAtIndex(brickIndex)
+                bricks.removeAtIndex(index)
+                self.ball.physicsBody!.applyImpulse(CGVectorMake(dX, dY))
+                self.ball.physicsBody!.velocity.dy = -200
+                
             }
         }
-
+        
+        if (self.ball.position.y <= self.breaker.position.y + self.breaker.frame.size.height)
+            && (self.ball.position.x >= self.breaker.position.x)
+            && (self.ball.position.x + self.ball.frame.width <= self.breaker.position.x + self.breaker.frame.width)
+        {
+            print("flyup")
+            self.ball.physicsBody!.velocity.dy = 200
+        }
+        
+        if self.ball.position.x >= self.frame.width - self.ball.frame.width {
+            self.ball.physicsBody!.applyImpulse(CGVectorMake(dX, dY))
+            self.ball.physicsBody!.velocity.dx = -200
+        }
+        
+        if self.ball.position.x <= self.ball.frame.width {
+            self.ball.physicsBody!.applyImpulse(CGVectorMake(dX, dY))
+            self.ball.physicsBody!.velocity.dx = +200
+        }
+        
+        if self.ball.position.y >= (self.frame.height - self.ball.frame.size.height) {
+            print("flydown")
+            self.ball.physicsBody!.velocity.dy = -200
+        }
     }
     
     //ADD breaker
@@ -75,6 +110,7 @@ class GameScene: SKScene {
         //3 position
         breaker.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.minY + 40)
         //4
+//        breaker.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(10, 100))
         addChild(breaker)
     }
     
@@ -98,30 +134,15 @@ class GameScene: SKScene {
         //3 position
         ball.position.x = breaker.position.x
         ball.position.y = breaker.position.y + breaker.frame.height
+        ball.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(10, 10))
+        
         
         //4 action
         //let flyDown = SKAction.moveByX(0, y: -20, duration: 0.1)
         //ball.runAction(SKAction.repeatActionForever(flyDown))
         
         
-        let validate = SKAction.runBlock {
-            let flyUp = SKAction.moveByX(0, y: 20, duration: 0.3)
-            let flyDownz = SKAction.moveByX(0, y: -20, duration: 0.3)
-            
-            if self.ball.position.y <= self.breaker.position.y + self.breaker.frame.size.height + 20 {
-                print("hihi")
-                self.ball.runAction(SKAction.repeatActionForever(flyUp))
-            }
-            
-            if self.ball.position.y >= (self.frame.height - self.ball.frame.size.height - 20) {
-                self.ball.runAction(flyDownz)
-            }
-            
-            print("run")
-        }
         addChild(ball)
-
-        self.ball.runAction(validate)
         //5
     }
     
@@ -145,7 +166,6 @@ class GameScene: SKScene {
             brick.anchorPoint = CGPointZero
             brick.position = CGPoint(x: checkX, y: checkY)
             checkX += brick.size.width+1
-            print(brick.position.x)
             bricks.append(brick)
             addChild(brick)
 
